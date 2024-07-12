@@ -1,20 +1,38 @@
 package BubbleSort;
 
-public class MyBubbleSort {
-    public static int[] sort(int[] values) {
+import MyLinkedList.MyLinkedList;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Objects;
+
+public class MyBubbleSort<T> {
+    public static <T extends Comparable<T>> MyLinkedList<T> sort(MyLinkedList<T> values) throws IllegalAccessException {
+        Comparator<T> comparator = Comparable::compareTo;
+        Object [] array = new Object[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            array[i] = values.get(i);
+        }
+
         boolean isSorted = false;
-        int saveValue;
+        T saveValue;
         while (!isSorted) {
             isSorted = true;
-            for (int i = 0; i < values.length - 1; i++) {
-                if (values[i] > values[i + 1]) {
+            for (int i = 0; i < array.length - 1; i++) {
+                if (comparator.compare((T) array[i], (T) array[i + 1]) > 0) {
                     isSorted = false;
-                    saveValue = values[i];
-                    values[i] = values[i + 1];
-                    values[i + 1] = saveValue;
+                    saveValue = (T) array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = saveValue;
                 }
             }
         }
-        return values;
+
+        MyLinkedList<T> sortedList = new MyLinkedList<T>();
+        for (int i = 0; i < array.length; i++) {
+            sortedList.add((T) array[i]);
+        }
+        return sortedList;
     }
 }

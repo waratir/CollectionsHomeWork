@@ -1,5 +1,7 @@
 package MyLinkedList;
 
+import BubbleSort.MyBubbleSort;
+
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -42,5 +44,13 @@ public class Test {
         MyLinkedList<Double> myLinkedList5 = new MyLinkedList<Double>(myLinkedList4);
         System.out.println(myLinkedList5);
 
+
+        MyLinkedList<String> myLinkedList6 = new MyLinkedList<String>();
+        myLinkedList6.add("Tert");
+        myLinkedList6.add("Alex");
+        myLinkedList6.add("Jim");
+
+        System.out.println("Sort Collection");
+        System.out.println(MyBubbleSort.sort(myLinkedList6));
     }
 }
